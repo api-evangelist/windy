@@ -1,0 +1,199 @@
+{
+  "item": [
+    {
+      "id": "a1f0c2d4-1111-4a01-9b01-point-forecast",
+      "name": "Point Forecast",
+      "description": {
+        "content": "Multi-model numerical weather forecast data for a coordinate.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b2e1d3f5-2222-4b02-9c02-point-forecast-post",
+          "name": "Get a multi-model point forecast for a coordinate.",
+          "request": {
+            "name": "Get a multi-model point forecast for a coordinate.",
+            "description": {
+              "content": "Returns multi-model numerical weather, sea, and air-quality forecast data for a latitude/longitude. The API key is passed in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "https://api.windy.com/api/point-forecast/v2",
+              "path": [
+                "api",
+                "point-forecast",
+                "v2"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lat\": 49.809,\n  \"lon\": 16.787,\n  \"model\": \"gfs\",\n  \"parameters\": [\"temp\", \"wind\", \"precip\"],\n  \"levels\": [\"surface\"],\n  \"key\": \"{{pointForecastKey}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c3d2e4f6-3333-4c03-9d03-webcams",
+      "name": "Webcams",
+      "description": {
+        "content": "Access to the world's largest repository of webcams.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d4e3f5a7-4444-4d04-9e04-webcams-list",
+          "name": "List and filter webcams.",
+          "request": {
+            "name": "List and filter webcams.",
+            "description": {
+              "content": "Returns a paginated, filterable list of webcams. Requires the x-windy-api-key header.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "https://api.windy.com/webcams/api/v3/webcams?limit=10&offset=0&include=images,location,player,urls",
+              "path": [
+                "webcams",
+                "api",
+                "v3",
+                "webcams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of webcams to return (max 50)."
+                },
+                {
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Pagination offset (max 1000 free / 10000 professional)."
+                },
+                {
+                  "key": "include",
+                  "value": "images,location,player,urls",
+                  "description": "Comma-separated detail objects to include."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "x-windy-api-key",
+                "value": "{{windyApiKey}}"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "e5f4a6b8-5555-4e05-9f05-webcams-detail",
+          "name": "Get a single webcam by ID.",
+          "request": {
+            "name": "Get a single webcam by ID.",
+            "description": {
+              "content": "Returns details for a single webcam. Requires the x-windy-api-key header.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "https://api.windy.com/webcams/api/v3/webcams/:webcamId?include=images,location,player,urls",
+              "path": [
+                "webcams",
+                "api",
+                "v3",
+                "webcams",
+                ":webcamId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "images,location,player,urls",
+                  "description": "Comma-separated detail objects to include."
+                }
+              ],
+              "variable": [
+                {
+                  "key": "webcamId",
+                  "value": "",
+                  "description": "The numeric identifier of the webcam."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "x-windy-api-key",
+                "value": "{{windyApiKey}}"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.windy.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-windy-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{windyApiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f6a5b7c9-6666-4f06-9a06-windy-collection",
+    "name": "Windy API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Windy API - Point Forecast (POST, key in body) and Webcams v3 (GET, x-windy-api-key header). The Map Forecast product is a client-side Leaflet JavaScript library and is not represented as REST requests.\n\nContact Support:\n URL: https://api.windy.com",
+      "type": "text/plain"
+    }
+  }
+}

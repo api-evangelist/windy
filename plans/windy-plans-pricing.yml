@@ -1,0 +1,207 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Windy
+providerId: windy
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: true
+tags:
+- Weather
+- Forecast
+- Maps
+- Webcams
+- Visualization
+- Plans
+description: >-
+  The Windy API is sold as three separate products, each with a free testing /
+  free tier for development and a paid Professional tier billed as an annual
+  subscription. The Point Forecast and Map Forecast APIs each cost 990 EUR per
+  year (Map Forecast adds an optional 1,000 EUR for ECMWF access); the Webcams
+  API Professional tier costs 9,990 EUR per year. Free tiers are capped at 500
+  daily sessions/requests (forecast products) and return shuffled or
+  low-resolution data not permitted in production.
+notes: >-
+  Prices are annual subscriptions collected in EUR and are subject to change;
+  verify against the official Windy API pricing pages during reconciliation.
+sources:
+- https://api.windy.com/point-forecast/pricing
+- https://api.windy.com/map-forecast/pricing
+- https://api.windy.com/webcams/pricing
+plans:
+- id: windy-point-forecast-testing
+  name: Point Forecast - Testing
+  type: free
+  description: >-
+    Free development tier for the Point Forecast API. Returns randomly
+    shuffled and slightly modified data; not for production use.
+  entries:
+  - label: Daily Requests
+    name: point_forecast_testing_requests
+    type: usage
+    metric: requests
+    limit: 500
+    timeFrame: day
+    geo: global
+    unit: 1
+    price: free
+    userMultiplied: false
+  elements:
+  - name: Models - arome, iconEu, gfs, gfsWave, namConus, namHawaii, namAlaska, cams
+  - name: Shuffled / modified data
+- id: windy-point-forecast-professional
+  name: Point Forecast - Professional
+  type: subscription
+  description: >-
+    Production Point Forecast access with unlimited forecast models
+    (excluding ECMWF) and unlimited parameters.
+  entries:
+  - label: Annual Subscription
+    name: point_forecast_pro
+    type: flat
+    metric: subscription
+    limit: 1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: 990 EUR / year
+    userMultiplied: false
+  - label: Daily Requests
+    name: point_forecast_pro_requests
+    type: usage
+    metric: requests
+    limit: 10000
+    timeFrame: day
+    geo: global
+    unit: 1
+    price: included (expandable by agreement)
+    userMultiplied: false
+  elements:
+  - name: Unlimited forecast models (excl. ECMWF)
+  - name: Unlimited parameters
+- id: windy-map-forecast-testing
+  name: Map Forecast - Testing
+  type: free
+  description: >-
+    Free development tier for the embeddable Leaflet-based Map Forecast
+    library. Development only, not allowed in production.
+  entries:
+  - label: Daily Sessions
+    name: map_forecast_testing_sessions
+    type: usage
+    metric: sessions
+    limit: 500
+    timeFrame: day
+    geo: global
+    unit: 1
+    price: free
+    userMultiplied: false
+  elements:
+  - name: GFS model only
+  - name: Layers - wind, temperature, pressure
+  - name: Isolines - pressure, temperature
+- id: windy-map-forecast-professional
+  name: Map Forecast - Professional
+  type: subscription
+  description: >-
+    Production Map Forecast access for corporate customers, with 40+ layers
+    and multiple models. ECMWF access is an optional add-on.
+  entries:
+  - label: Annual Subscription
+    name: map_forecast_pro
+    type: flat
+    metric: subscription
+    limit: 1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: 990 EUR / year (+1,000 EUR optional for ECMWF)
+    userMultiplied: false
+  - label: Daily Sessions
+    name: map_forecast_pro_sessions
+    type: usage
+    metric: sessions
+    limit: 10000
+    timeFrame: day
+    geo: global
+    unit: 1
+    price: included (can be increased by agreement)
+    userMultiplied: false
+  elements:
+  - name: Models - GFS, ICON, NAM, AROME, GEOS5, CAMS, HRRR, ECMWF (internal use)
+  - name: 40+ weather layers
+- id: windy-webcams-free
+  name: Webcams - Free
+  type: free
+  description: >-
+    Free Webcams tier for linking or embedding. Low-resolution / size-limited
+    images, token URLs valid for 15 minutes, listing offset capped at 1000.
+  entries:
+  - label: Image URL Validity
+    name: webcams_free_url_ttl
+    type: limit
+    metric: minutes
+    limit: 15
+    timeFrame: usage
+    geo: global
+    unit: 1
+    price: free
+    userMultiplied: false
+  - label: Maximum Offset
+    name: webcams_free_offset
+    type: limit
+    metric: offset
+    limit: 1000
+    timeFrame: usage
+    geo: global
+    unit: 1
+    price: free
+    userMultiplied: false
+  elements:
+  - name: Link or embed (images link to windy.com)
+  - name: Limited image size
+  - name: Ads in timelapse player
+- id: windy-webcams-professional
+  name: Webcams - Professional
+  type: subscription
+  description: >-
+    Production Webcams access with full-resolution images, no ads, extended
+    token validity, higher offset, and a full-list export call.
+  entries:
+  - label: Annual Subscription
+    name: webcams_pro
+    type: flat
+    metric: subscription
+    limit: 1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: 9990 EUR / year
+    userMultiplied: false
+  - label: Image URL Validity
+    name: webcams_pro_url_ttl
+    type: limit
+    metric: hours
+    limit: 24
+    timeFrame: usage
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Maximum Offset
+    name: webcams_pro_offset
+    type: limit
+    metric: offset
+    limit: 10000
+    timeFrame: usage
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  elements:
+  - name: No ads, unrestricted API access
+  - name: Full-resolution images
+  - name: Full webcam list via single API call
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

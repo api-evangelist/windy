@@ -1,0 +1,74 @@
+aid: windy
+name: Windy
+review:
+  question: Does Windy expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. Windy's published API surface is
+    request/response: the Point Forecast API is a single POST endpoint, the
+    Webcams API is REST (GET), and the Map Forecast product is a client-side
+    Leaflet JavaScript library. None of these are streaming/event-driven HTTP
+    (no Server-Sent Events) and none expose a WebSocket surface, so there is
+    nothing in scope for AsyncAPI modeling.
+findings:
+  summary: |
+    Windy does not publish a documented public WebSocket API. The three Windy
+    API products are all conventional HTTP request/response or client-side
+    library surfaces. The Point Forecast API is a single POST to
+    https://api.windy.com/api/point-forecast/v2 with the key in the body. The
+    Webcams API is REST under https://api.windy.com/webcams/api/v3 authenticated
+    with an x-windy-api-key header. The Map Forecast API is an embeddable
+    Leaflet 1.4.x JavaScript library bootstrapped from libBoot.js, not a network
+    API. No realtime, bidirectional, or streaming WebSocket (ws:// or wss://)
+    endpoint is documented for any product.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.windy.com/api/point-forecast/v2
+      documented: true
+      note: Point Forecast API - single POST endpoint, key in request body.
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.windy.com/webcams/api/v3
+      documented: true
+      note: Webcams API v3 - GET endpoints, x-windy-api-key header.
+    - protocol: JavaScript Library
+      scheme: https
+      baseURL: https://api.windy.com/assets/map-forecast/libBoot.js
+      documented: true
+      note: Map Forecast - client-side Leaflet plugin, not a network API.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented for Point Forecast, Map Forecast, or Webcams as of the review date.
+  endpointsConfirmedRest:
+    - POST https://api.windy.com/api/point-forecast/v2
+    - GET  https://api.windy.com/webcams/api/v3/webcams
+    - GET  https://api.windy.com/webcams/api/v3/webcams/{webcamId}
+sources:
+  - url: https://api.windy.com/point-forecast/docs
+    type: Documentation
+    note: Point Forecast is a single POST endpoint; key passed in the JSON body. No WebSocket.
+  - url: https://api.windy.com/webcams/docs
+    type: Documentation
+    note: Webcams API v3 is REST (GET) with x-windy-api-key header. No WebSocket.
+  - url: https://api.windy.com/map-forecast/docs
+    type: Documentation
+    note: Map Forecast is a Leaflet-based JavaScript library (libBoot.js), not a network API.
+  - url: https://github.com/windycom/API
+    type: SourceCode
+    note: Official Windy Leaflet plugin repository; client-side library, no WebSocket surface.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE protocol surface exists across any Windy product, so no
+    AsyncAPI document was authored. The apis.yml catalogs the three documented
+    HTTP/library surfaces and the OpenAPI document models the two REST surfaces
+    (Point Forecast POST and Webcams v3 GET endpoints).
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

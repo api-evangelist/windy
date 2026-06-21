@@ -1,0 +1,106 @@
+aid: windy
+url: https://raw.githubusercontent.com/api-evangelist/windy/refs/heads/main/apis.yml
+name: Windy
+kind: company
+description: Windy.com is a weather visualization platform serving high-resolution
+  forecast models, animated weather maps, and a global webcam network. The Windy API
+  exposes three developer products - a Point Forecast API for multi-model numerical
+  weather data at a coordinate, an embeddable Map Forecast API based on Leaflet, and
+  a Webcams API for the world's largest webcam repository.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Weather
+- Forecast
+- Maps
+- Webcams
+- Visualization
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: windy:point-forecast
+  name: Windy Point Forecast API
+  tags:
+  - Weather
+  - Forecast
+  - Point Forecast
+  - Numerical Weather Prediction
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.windy.com/point-forecast/docs
+  baseURL: https://api.windy.com/api/point-forecast/v2
+  properties:
+  - url: https://api.windy.com/point-forecast/docs
+    type: Documentation
+  - url: openapi/windy-openapi.yml
+    type: OpenAPI
+  - url: collections/windy.postman_collection.json
+    type: PostmanCollection
+  - url: collections/windy.opencollection.json
+    type: OpenCollection
+  description: A single POST endpoint that returns multi-model numerical weather forecast
+    data (temperature, wind, precipitation, clouds, pressure, waves, air quality and
+    more) for a latitude/longitude across weather, sea, and air-quality models such
+    as GFS, ICON, AROME, NAM, and CAMS.
+- aid: windy:map-forecast
+  name: Windy Map Forecast API
+  tags:
+  - Weather
+  - Maps
+  - Leaflet
+  - Visualization
+  - Embeddable
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.windy.com/map-forecast/docs
+  baseURL: https://api.windy.com/assets/map-forecast/libBoot.js
+  properties:
+  - url: https://api.windy.com/map-forecast/docs
+    type: Documentation
+  - url: https://github.com/windycom/API
+    type: SourceCode
+  - url: openapi/windy-openapi.yml
+    type: OpenAPI
+  description: An embeddable JavaScript map library based on Leaflet 1.4.x that renders
+    animated Windy weather layers, particles, isolines, and interactive controls in
+    a web or mobile app, bootstrapped from libBoot.js and configured with a Windy API
+    key.
+- aid: windy:webcams
+  name: Windy Webcams API
+  tags:
+  - Webcams
+  - Imagery
+  - Timelapse
+  - Geolocation
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.windy.com/webcams/docs
+  baseURL: https://api.windy.com/webcams/api/v3
+  properties:
+  - url: https://api.windy.com/webcams/docs
+    type: Documentation
+  - url: openapi/windy-openapi.yml
+    type: OpenAPI
+  - url: collections/windy.postman_collection.json
+    type: PostmanCollection
+  - url: collections/windy.opencollection.json
+    type: OpenCollection
+  description: A REST API providing access to the world's largest repository of webcams,
+    with list and detail endpoints filterable by location, category, and country, each
+    webcam carrying preview images, timelapse players, and location metadata. Authenticated
+    with an x-windy-api-key header.
+common:
+- type: GitHubOrganization
+  url: https://github.com/windycom
+- type: LinkedIn
+  url: https://www.linkedin.com/company/windy-com
+- type: Website
+  url: https://www.windy.com
+- type: Documentation
+  url: https://api.windy.com
+- type: Plans
+  url: plans/windy-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/windy-rate-limits.yml
+- type: FinOps
+  url: finops/windy-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Windy API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-windy-api-key",
+      "value": "{{windyApiKey}}",
+      "in": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Point Forecast",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a multi-model point forecast for a coordinate.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.windy.com/api/point-forecast/v2",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"lat\": 49.809,\n  \"lon\": 16.787,\n  \"model\": \"gfs\",\n  \"parameters\": [\"temp\", \"wind\", \"precip\"],\n  \"levels\": [\"surface\"],\n  \"key\": \"{{pointForecastKey}}\"\n}"
+            }
+          },
+          "docs": "Returns multi-model numerical weather, sea, and air-quality forecast data for a latitude/longitude. The API key is passed in the request body, not a header."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webcams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List and filter webcams.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.windy.com/webcams/api/v3/webcams",
+            "params": [
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Maximum number of webcams to return (max 50)."
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset (max 1000 free / 10000 professional)."
+              },
+              {
+                "name": "include",
+                "value": "images,location,player,urls",
+                "type": "query",
+                "description": "Comma-separated detail objects to include."
+              }
+            ]
+          },
+          "docs": "Returns a paginated, filterable list of webcams. Requires the x-windy-api-key header."
+        },
+        {
+          "info": {
+            "name": "Get a single webcam by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.windy.com/webcams/api/v3/webcams/:webcamId",
+            "params": [
+              {
+                "name": "webcamId",
+                "value": "",
+                "type": "path",
+                "description": "The numeric identifier of the webcam."
+              },
+              {
+                "name": "include",
+                "value": "images,location,player,urls",
+                "type": "query",
+                "description": "Comma-separated detail objects to include."
+              }
+            ]
+          },
+          "docs": "Returns details for a single webcam. Requires the x-windy-api-key header."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,86 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Windy
+providerId: windy
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Weather
+- Forecast
+- Maps
+- Webcams
+- Visualization
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Windy enforces per-key daily session/request quotas that differ by product
+  and tier. The Point Forecast and Map Forecast APIs are limited to 500 daily
+  requests/sessions on the free testing tier and 10,000 on Professional
+  (expandable by agreement). The Webcams API is governed by token-secured image
+  URL validity (15 minutes free, 24 hours professional) and listing offset
+  caps (1,000 free, 10,000 professional) rather than a published per-minute
+  rate. Exact per-minute throttling values are not publicly documented.
+notes: >-
+  Daily request/session caps are the primary published limits; verify any
+  per-minute throttling and burst behavior with Windy during reconciliation.
+sources:
+- https://api.windy.com/point-forecast/pricing
+- https://api.windy.com/map-forecast/pricing
+- https://api.windy.com/webcams/pricing
+- https://api.windy.com/point-forecast/docs
+responseCodes:
+  throttled: 429
+limits:
+- name: Point Forecast Daily Requests (Testing)
+  scope: api-key
+  metric: requests
+  limit: 500
+  notes: Free testing tier daily request cap; returns shuffled data, dev only.
+- name: Point Forecast Daily Requests (Professional)
+  scope: api-key
+  metric: requests
+  limit: 10000
+  notes: Professional tier daily cap; expandable by agreement.
+- name: Map Forecast Daily Sessions (Testing)
+  scope: api-key
+  metric: sessions
+  limit: 500
+  notes: Free testing tier daily session cap; GFS only, dev only.
+- name: Map Forecast Daily Sessions (Professional)
+  scope: api-key
+  metric: sessions
+  limit: 10000
+  notes: Professional tier daily session cap; can be increased by agreement.
+- name: Webcams Image URL Validity (Free)
+  scope: api-key
+  metric: minutes
+  limit: 15
+  notes: Token-secured image URLs expire after 15 minutes on the free tier.
+- name: Webcams Image URL Validity (Professional)
+  scope: api-key
+  metric: hours
+  limit: 24
+  notes: Token-secured image URLs expire after 24 hours on Professional.
+- name: Webcams Listing Offset (Free)
+  scope: api-key
+  metric: offset
+  limit: 1000
+  notes: Maximum pagination offset on the free Webcams tier.
+- name: Webcams Listing Offset (Professional)
+  scope: api-key
+  metric: offset
+  limit: 10000
+  notes: Maximum pagination offset on the Professional Webcams tier.
+policies:
+- name: Service-Specific Keys
+  description: Keys are not interchangeable across Point Forecast, Map Forecast, and Webcams; each product requires its own key.
+- name: Tiered Limits
+  description: Daily caps and image-URL validity raise when upgrading from free/testing to Professional, with further increases by agreement.
+- name: Token-Secured Imagery
+  description: Webcam image URLs are time-limited tokens; clients should re-fetch webcam objects on each page load rather than caching URLs.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

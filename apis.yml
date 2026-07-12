@@ -87,6 +87,12 @@ apis:
     webcam carrying preview images, timelapse players, and location metadata. Authenticated
     with an x-windy-api-key header.
 common:
+- type: VulnerabilityDisclosure
+  url: security/windy-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/windy-domain-security.yml
+- type: Authentication
+  url: authentication/windy-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/windycom
 - type: LinkedIn

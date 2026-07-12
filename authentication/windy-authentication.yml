@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/windy-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: WindyApiKey
+  type: apiKey
+  in: header
+  parameter: x-windy-api-key
+  description: Windy Webcams API key, obtained at https://api.windy.com/keys.
+  sources:
+  - openapi/windy-openapi.yml

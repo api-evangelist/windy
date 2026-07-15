@@ -87,6 +87,8 @@ apis:
     webcam carrying preview images, timelapse players, and location metadata. Authenticated
     with an x-windy-api-key header.
 common:
+- type: AgenticAccess
+  url: agentic-access/windy-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/windy-vulnerability-disclosure.yml
 - type: DomainSecurity

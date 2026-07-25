@@ -1,0 +1,117 @@
+openapi: 3.0.1
+info:
+  title: Windy Point Forecast API
+  description: 'The Windy API exposes weather and imagery data from Windy.com across three products: the Point Forecast API (multi-model numerical weather forecast data for a coordinate), the Map Forecast API (an embeddable Leaflet-based weather map library), and the Webcams API (the world''s largest webcam repository). This document models the HTTP/REST surfaces - the Point Forecast endpoint and the Webcams v3 endpoints. The Map Forecast product is a client-side JavaScript library and is referenced in the description rather than modeled as REST.'
+  termsOfService: https://account.windy.com/agreements/windy-api-map-and-point-forecast-terms-of-use
+  contact:
+    name: Windy API Support
+    url: https://api.windy.com
+  version: '3.0'
+servers:
+- url: https://api.windy.com
+  description: Windy API production host
+tags:
+- name: Point Forecast
+paths:
+  /api/point-forecast/v2:
+    post:
+      operationId: getPointForecast
+      tags:
+      - Point Forecast
+      summary: Get a multi-model point forecast for a coordinate.
+      description: Returns numerical weather, sea, and air-quality forecast data for a single latitude/longitude across the selected forecast model and parameters. The API key is passed in the request body.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PointForecastRequest'
+      responses:
+        '200':
+          description: Forecast data for the requested point.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PointForecastResponse'
+        '204':
+          description: No data available for the requested point/model combination.
+        '400':
+          description: Bad request - invalid parameters.
+        '401':
+          description: Unauthorized - missing or invalid API key.
+        '429':
+          description: Too Many Requests - daily session limit exceeded.
+components:
+  schemas:
+    PointForecastResponse:
+      type: object
+      properties:
+        ts:
+          type: array
+          description: Array of UNIX timestamps in milliseconds, one per forecast step.
+          items:
+            type: integer
+            format: int64
+        units:
+          type: object
+          description: Maps each parameter-level key to its measurement unit.
+          additionalProperties:
+            type: string
+          example:
+            temp-surface: K
+            wind_u-surface: m*s-1
+        warning:
+          type: string
+          description: Optional warning message returned by the API.
+      additionalProperties:
+        type: array
+        description: Data arrays keyed by "<parameter>-<level>" (e.g. temp-surface, wind_u-surface, wind_v-surface). Indices align with the ts array; null indicates missing model data.
+        items:
+          type: number
+          nullable: true
+    PointForecastRequest:
+      type: object
+      required:
+      - lat
+      - lon
+      - model
+      - parameters
+      - key
+      properties:
+        lat:
+          type: number
+          description: Latitude, rounded to 2 decimal places.
+          example: 49.809
+        lon:
+          type: number
+          description: Longitude, rounded to 2 decimal places.
+          example: 16.787
+        model:
+          type: string
+          description: Forecast model. Weather models include arome, iconEu, gfs, namConus, namHawaii, namAlaska; sea models include gfsWave, iconWave; air-quality models include cams, camsEu.
+          example: gfs
+        parameters:
+          type: array
+          description: Requested parameters, e.g. temp, dewpoint, precip, wind, windGust, cape, ptype, lclouds, mclouds, hclouds, rh, gh, pressure.
+          items:
+            type: string
+          example:
+          - temp
+          - wind
+          - precip
+        levels:
+          type: array
+          description: Geopotential levels. Defaults to ["surface"].
+          items:
+            type: string
+          example:
+          - surface
+        key:
+          type: string
+          description: Point Forecast API key, obtained at https://api.windy.com/keys.
+  securitySchemes:
+    WindyApiKey:
+      type: apiKey
+      in: header
+      name: x-windy-api-key
+      description: Windy Webcams API key, obtained at https://api.windy.com/keys.

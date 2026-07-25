@@ -1,0 +1,226 @@
+openapi: 3.0.1
+info:
+  title: Windy Point Forecast Webcams API
+  description: 'The Windy API exposes weather and imagery data from Windy.com across three products: the Point Forecast API (multi-model numerical weather forecast data for a coordinate), the Map Forecast API (an embeddable Leaflet-based weather map library), and the Webcams API (the world''s largest webcam repository). This document models the HTTP/REST surfaces - the Point Forecast endpoint and the Webcams v3 endpoints. The Map Forecast product is a client-side JavaScript library and is referenced in the description rather than modeled as REST.'
+  termsOfService: https://account.windy.com/agreements/windy-api-map-and-point-forecast-terms-of-use
+  contact:
+    name: Windy API Support
+    url: https://api.windy.com
+  version: '3.0'
+servers:
+- url: https://api.windy.com
+  description: Windy API production host
+tags:
+- name: Webcams
+paths:
+  /webcams/api/v3/webcams:
+    get:
+      operationId: listWebcams
+      tags:
+      - Webcams
+      summary: List and filter webcams.
+      description: Returns a paginated list of webcams. Results can be filtered by category, country, continent, region, and bounding box, and enriched with optional includes such as images, location, player, and urls.
+      parameters:
+      - name: lang
+        in: query
+        description: Language code for localized strings (e.g. en, de, es).
+        schema:
+          type: string
+          default: en
+      - name: limit
+        in: query
+        description: Maximum number of webcams to return (max 50).
+        schema:
+          type: integer
+          default: 10
+          maximum: 50
+      - name: offset
+        in: query
+        description: Offset for pagination. Max offset is 1000 (free) or 10000 (professional).
+        schema:
+          type: integer
+          default: 0
+      - name: categories
+        in: query
+        description: Comma-separated list of category slugs to filter by.
+        schema:
+          type: string
+      - name: continents
+        in: query
+        description: Comma-separated list of continent codes to filter by.
+        schema:
+          type: string
+      - name: countries
+        in: query
+        description: Comma-separated list of ISO country codes to filter by.
+        schema:
+          type: string
+      - name: regions
+        in: query
+        description: Comma-separated list of region codes to filter by.
+        schema:
+          type: string
+      - name: nearby
+        in: query
+        description: Filter to webcams near a point, as "lat,lon,radius" in km.
+        schema:
+          type: string
+      - name: include
+        in: query
+        description: 'Comma-separated list of detail objects to include in each webcam: categories, images, location, player, urls.'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of webcams.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebcamList'
+        '401':
+          description: Unauthorized - missing or invalid x-windy-api-key.
+      security:
+      - WindyApiKey: []
+  /webcams/api/v3/webcams/{webcamId}:
+    get:
+      operationId: getWebcam
+      tags:
+      - Webcams
+      summary: Get a single webcam by ID.
+      description: Returns details for a single webcam, optionally enriched with include objects.
+      parameters:
+      - name: webcamId
+        in: path
+        required: true
+        description: The numeric identifier of the webcam.
+        schema:
+          type: integer
+      - name: lang
+        in: query
+        description: Language code for localized strings.
+        schema:
+          type: string
+          default: en
+      - name: include
+        in: query
+        description: 'Comma-separated list of detail objects to include: categories, images, location, player, urls.'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A single webcam.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webcam'
+        '401':
+          description: Unauthorized - missing or invalid x-windy-api-key.
+        '404':
+          description: Webcam not found.
+      security:
+      - WindyApiKey: []
+components:
+  schemas:
+    WebcamList:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of webcams matching the query.
+        webcams:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webcam'
+    Webcam:
+      type: object
+      properties:
+        webcamId:
+          type: integer
+          description: Unique numeric webcam identifier.
+        title:
+          type: string
+          description: Human-readable webcam title.
+        status:
+          type: string
+          description: Webcam status, e.g. active or inactive.
+          enum:
+          - active
+          - inactive
+        viewCount:
+          type: integer
+          description: Total number of views.
+        lastUpdatedOn:
+          type: string
+          format: date-time
+          description: Timestamp of the last image update.
+        categories:
+          type: array
+          description: Categories assigned to the webcam (when included).
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+        location:
+          type: object
+          description: Geographic location of the webcam (when included).
+          properties:
+            city:
+              type: string
+            region:
+              type: string
+            country:
+              type: string
+            continent:
+              type: string
+            latitude:
+              type: number
+            longitude:
+              type: number
+        images:
+          type: object
+          description: Preview image URLs (when included). Token-secured, time-limited.
+          properties:
+            current:
+              type: object
+              properties:
+                icon:
+                  type: string
+                  format: uri
+                thumbnail:
+                  type: string
+                  format: uri
+                preview:
+                  type: string
+                  format: uri
+        player:
+          type: object
+          description: Timelapse player embed URLs (when included).
+          properties:
+            day:
+              type: string
+              format: uri
+            month:
+              type: string
+              format: uri
+            year:
+              type: string
+              format: uri
+        urls:
+          type: object
+          description: Detail and provider URLs (when included).
+          properties:
+            detail:
+              type: string
+              format: uri
+            provider:
+              type: string
+              format: uri
+  securitySchemes:
+    WindyApiKey:
+      type: apiKey
+      in: header
+      name: x-windy-api-key
+      description: Windy Webcams API key, obtained at https://api.windy.com/keys.

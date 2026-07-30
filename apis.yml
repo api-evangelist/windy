@@ -7,7 +7,20 @@ description: Windy.com is a weather visualization platform serving high-resoluti
   exposes three developer products - a Point Forecast API for multi-model numerical
   weather data at a coordinate, an embeddable Map Forecast API based on Leaflet, and
   a Webcams API for the world's largest webcam repository.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/windy.png
 tags:
 - Weather
 - Forecast
@@ -18,74 +31,50 @@ created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.19'
 apis:
-- aid: windy:point-forecast
+- aid: windy:windy-point-forecast-api
   name: Windy Point Forecast API
-  tags:
-  - Weather
-  - Forecast
-  - Point Forecast
-  - Numerical Weather Prediction
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  description: The Point Forecast API from Windy — 1 operation(s) for point forecast.
   humanURL: https://api.windy.com/point-forecast/docs
   baseURL: https://api.windy.com/api/point-forecast/v2
-  properties:
-  - url: https://api.windy.com/point-forecast/docs
-    type: Documentation
-  - url: openapi/windy-openapi.yml
-    type: OpenAPI
-  - url: collections/windy.postman_collection.json
-    type: PostmanCollection
-  - url: collections/windy.opencollection.json
-    type: OpenCollection
-  description: A single POST endpoint that returns multi-model numerical weather forecast
-    data (temperature, wind, precipitation, clouds, pressure, waves, air quality and
-    more) for a latitude/longitude across weather, sea, and air-quality models such
-    as GFS, ICON, AROME, NAM, and CAMS.
-- aid: windy:map-forecast
-  name: Windy Map Forecast API
   tags:
-  - Weather
-  - Maps
-  - Leaflet
-  - Visualization
-  - Embeddable
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://api.windy.com/map-forecast/docs
-  baseURL: https://api.windy.com/assets/map-forecast/libBoot.js
+  - Point Forecast
   properties:
-  - url: https://api.windy.com/map-forecast/docs
-    type: Documentation
-  - url: https://github.com/windycom/API
-    type: SourceCode
-  - url: openapi/windy-openapi.yml
-    type: OpenAPI
-  description: An embeddable JavaScript map library based on Leaflet 1.4.x that renders
-    animated Windy weather layers, particles, isolines, and interactive controls in
-    a web or mobile app, bootstrapped from libBoot.js and configured with a Windy API
-    key.
-- aid: windy:webcams
+  - type: OpenAPI
+    url: openapi/windy-point-forecast-api-openapi.yml
+  - type: Documentation
+    url: https://api.windy.com/point-forecast/docs
+  - type: PostmanCollection
+    url: collections/windy.postman_collection.json
+  - type: OpenCollection
+    url: collections/windy.opencollection.json
+  - type: Documentation
+    url: https://api.windy.com/map-forecast/docs
+  - type: SourceCode
+    url: https://github.com/windycom/API
+  - type: Documentation
+    url: https://api.windy.com/webcams/docs
+- aid: windy:windy-webcams-api
   name: Windy Webcams API
+  description: The Webcams API from Windy — 2 operation(s) for webcams.
+  humanURL: https://api.windy.com/point-forecast/docs
+  baseURL: https://api.windy.com/api/point-forecast/v2
   tags:
   - Webcams
-  - Imagery
-  - Timelapse
-  - Geolocation
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://api.windy.com/webcams/docs
-  baseURL: https://api.windy.com/webcams/api/v3
   properties:
-  - url: https://api.windy.com/webcams/docs
-    type: Documentation
-  - url: openapi/windy-openapi.yml
-    type: OpenAPI
-  - url: collections/windy.postman_collection.json
-    type: PostmanCollection
-  - url: collections/windy.opencollection.json
-    type: OpenCollection
-  description: A REST API providing access to the world's largest repository of webcams,
-    with list and detail endpoints filterable by location, category, and country, each
-    webcam carrying preview images, timelapse players, and location metadata. Authenticated
-    with an x-windy-api-key header.
+  - type: OpenAPI
+    url: openapi/windy-webcams-api-openapi.yml
+  - type: Documentation
+    url: https://api.windy.com/point-forecast/docs
+  - type: PostmanCollection
+    url: collections/windy.postman_collection.json
+  - type: OpenCollection
+    url: collections/windy.opencollection.json
+  - type: Documentation
+    url: https://api.windy.com/map-forecast/docs
+  - type: SourceCode
+    url: https://github.com/windycom/API
+  - type: Documentation
+    url: https://api.windy.com/webcams/docs
 common:
 - type: AgenticAccess
   url: agentic-access/windy-agentic-access.yml

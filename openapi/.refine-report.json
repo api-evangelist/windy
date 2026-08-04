@@ -1,0 +1,16 @@
+{
+  "provider": "windy",
+  "sources": [
+    "windy-point-forecast-api-openapi.yml",
+    "windy-webcams-api-openapi.yml"
+  ],
+  "outputs": [
+    "windy-point-forecast-api-openapi.yml",
+    "windy-webcams-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

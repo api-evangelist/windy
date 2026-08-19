@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Windy Point Forecast API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Point Forecast",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a multi-model point forecast for a coordinate.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.windy.com/api/point-forecast/v2",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns numerical weather, sea, and air-quality forecast data for a single latitude/longitude across the selected forecast model and parameters. The API key is passed in the request body."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,283 @@
+{
+  "item": [
+    {
+      "id": "d3898369-9593-4c80-ad27-76e95721fb98",
+      "name": "Point Forecast",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2f7e26e1-4e8c-4235-9a9d-8ff0a56dfe1a",
+          "name": "Get a multi-model point forecast for a coordinate.",
+          "request": {
+            "name": "Get a multi-model point forecast for a coordinate.",
+            "description": {
+              "content": "Returns numerical weather, sea, and air-quality forecast data for a single latitude/longitude across the selected forecast model and parameters. The API key is passed in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "point-forecast",
+                "v2"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lat\": \"<number>\",\n  \"lon\": \"<number>\",\n  \"model\": \"<string>\",\n  \"parameters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"key\": \"<string>\",\n  \"levels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b1f5834e-2087-49b8-8b52-d14c6af0dbcf",
+              "name": "Forecast data for the requested point.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "point-forecast",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lat\": 49.809,\n  \"lon\": 16.787,\n  \"model\": \"gfs\",\n  \"parameters\": [\n    \"temp\",\n    \"wind\",\n    \"precip\"\n  ],\n  \"key\": \"<string>\",\n  \"levels\": [\n    \"surface\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ts\": [\n    3602,\n    2820\n  ],\n  \"units\": {\n    \"temp-surface\": \"K\",\n    \"wind_u-surface\": \"m*s-1\"\n  },\n  \"warning\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f93a7dc-644f-4f37-be14-f1d5d5ed8934",
+              "name": "No data available for the requested point/model combination.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "point-forecast",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lat\": 49.809,\n  \"lon\": 16.787,\n  \"model\": \"gfs\",\n  \"parameters\": [\n    \"temp\",\n    \"wind\",\n    \"precip\"\n  ],\n  \"key\": \"<string>\",\n  \"levels\": [\n    \"surface\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "abedc325-4ad6-4467-a389-6e92ee135db8",
+              "name": "Bad request - invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "point-forecast",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lat\": 49.809,\n  \"lon\": 16.787,\n  \"model\": \"gfs\",\n  \"parameters\": [\n    \"temp\",\n    \"wind\",\n    \"precip\"\n  ],\n  \"key\": \"<string>\",\n  \"levels\": [\n    \"surface\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "429b6b28-efd0-4279-b3e3-ec7735a097bb",
+              "name": "Unauthorized - missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "point-forecast",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lat\": 49.809,\n  \"lon\": 16.787,\n  \"model\": \"gfs\",\n  \"parameters\": [\n    \"temp\",\n    \"wind\",\n    \"precip\"\n  ],\n  \"key\": \"<string>\",\n  \"levels\": [\n    \"surface\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d8131c4a-3fbd-47a6-bbd8-ec18a0794981",
+              "name": "Too Many Requests - daily session limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "point-forecast",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lat\": 49.809,\n  \"lon\": 16.787,\n  \"model\": \"gfs\",\n  \"parameters\": [\n    \"temp\",\n    \"wind\",\n    \"precip\"\n  ],\n  \"key\": \"<string>\",\n  \"levels\": [\n    \"surface\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.windy.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "23bc8241-4a0b-46eb-9699-55e5b6f049db",
+    "name": "Windy Point Forecast API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Windy API exposes weather and imagery data from Windy.com across three products: the Point Forecast API (multi-model numerical weather forecast data for a coordinate), the Map Forecast API (an embeddable Leaflet-based weather map library), and the Webcams API (the world's largest webcam repository). This document models the HTTP/REST surfaces - the Point Forecast endpoint and the Webcams v3 endpoints. The Map Forecast product is a client-side JavaScript library and is referenced in the description rather than modeled as REST.\n\nContact Support:\n Name: Windy API Support",
+      "type": "text/plain"
+    }
+  }
+}

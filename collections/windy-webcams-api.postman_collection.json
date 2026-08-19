@@ -1,0 +1,563 @@
+{
+  "item": [
+    {
+      "id": "ef415756-85a7-4d4b-8b55-89f9f0c8da80",
+      "name": "Webcams",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b4f7aab9-e4b7-4bed-aebe-42e60e7e8b1c",
+          "name": "List and filter webcams.",
+          "request": {
+            "name": "List and filter webcams.",
+            "description": {
+              "content": "Returns a paginated list of webcams. Results can be filtered by category, country, continent, region, and bounding box, and enriched with optional includes such as images, location, player, and urls.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webcams",
+                "api",
+                "v3",
+                "webcams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lang",
+                  "value": "en",
+                  "description": "Language code for localized strings (e.g. en, de, es)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of webcams to return (max 50)."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination. Max offset is 1000 (free) or 10000 (professional)."
+                },
+                {
+                  "disabled": false,
+                  "key": "categories",
+                  "value": "<string>",
+                  "description": "Comma-separated list of category slugs to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "continents",
+                  "value": "<string>",
+                  "description": "Comma-separated list of continent codes to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "countries",
+                  "value": "<string>",
+                  "description": "Comma-separated list of ISO country codes to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "regions",
+                  "value": "<string>",
+                  "description": "Comma-separated list of region codes to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "nearby",
+                  "value": "<string>",
+                  "description": "Filter to webcams near a point, as \"lat,lon,radius\" in km."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list of detail objects to include in each webcam: categories, images, location, player, urls."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-windy-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4a52156a-542b-45ff-99c7-529fd02444cb",
+              "name": "A list of webcams.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webcams",
+                    "api",
+                    "v3",
+                    "webcams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "continents",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countries",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "regions",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nearby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-windy-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 6736,\n  \"webcams\": [\n    {\n      \"webcamId\": 2054,\n      \"title\": \"string\",\n      \"status\": \"active\",\n      \"viewCount\": 1989,\n      \"lastUpdatedOn\": \"2010-08-06T21:22:24.865Z\",\n      \"categories\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"location\": {\n        \"city\": \"string\",\n        \"region\": \"string\",\n        \"country\": \"string\",\n        \"continent\": \"string\",\n        \"latitude\": 2137.0527398093895,\n        \"longitude\": 7296.898370892843\n      },\n      \"images\": {\n        \"current\": {\n          \"icon\": \"http://fYAUdGcrBy.qopldn2+XPf0CVgpqH3wDTmsPxYHsbcTXZNRkORfl-UpqzSEEyPpU.-v9WiyBfl1mHas\",\n          \"thumbnail\": \"https://hCjqiPIbPQYJSqtBYeqbmDUqIjEZB.afplcwJYu,QgIzh-+8JHANoK\",\n          \"preview\": \"https://xGTjXHBonluwUgvzixPvvQeKhK.znCPmAE7k\"\n        }\n      },\n      \"player\": {\n        \"day\": \"https://hCgsobCMAJmqGLfgcWLEnLX.nmfAMPG-BMNPf5w88qfSKlmozx\",\n        \"month\": \"http://pCoWpodhVQEmLNKevUkyEEiPbmaZenfys.qiFZ,8vH2bS.S0wU6pY4cWQV\",\n        \"year\": \"https://bBoGMk.qpBO9ap3Elk\"\n      },\n      \"urls\": {\n        \"detail\": \"http://umMCuONmZg.tpayeTPAyz3PVoBf\",\n        \"provider\": \"https://Ga.oqjxB8t7VHedQqL9S2X2M2VTcL\"\n      }\n    },\n    {\n      \"webcamId\": 7242,\n      \"title\": \"string\",\n      \"status\": \"active\",\n      \"viewCount\": 8314,\n      \"lastUpdatedOn\": \"2021-11-16T03:13:14.274Z\",\n      \"categories\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"location\": {\n        \"city\": \"string\",\n        \"region\": \"string\",\n        \"country\": \"string\",\n        \"continent\": \"string\",\n        \"latitude\": 7359.735294779783,\n        \"longitude\": 60.55533262078639\n      },\n      \"images\": {\n        \"current\": {\n          \"icon\": \"http://DXaKdbGVEFcLLaEmAq.dkmggv6uR0qdnQ7oniEJt\",\n          \"thumbnail\": \"http://yxanrfvW.jmbI4gd-oHAio8opn\",\n          \"preview\": \"http://nBbfYuugYsDEVDXzbpcIpPpYovmIDwR.vdouu2--5VE.ycIJG3sSm-BhIqsoMuBjW0P9E.+DTuXJpY\"\n        }\n      },\n      \"player\": {\n        \"day\": \"http://GZjmjOBbpspXy.yqdfTuI9Qxu0P3lAVVLDrukYSe6LfRax\",\n        \"month\": \"https://TaYmHcMnlesZkEOIdiGC.jyfH3nvSnlIWx.88qIX8TzMHN9Xk7ctfrnNDYmZb\",\n        \"year\": \"http://yrqVAdRLa.fcggQPxu5FcjL2bufDMtb0EV0MFQ6F80fVXuQx69qzjzxBjXHArexTW.xS3UsSoXjz,JJw\"\n      },\n      \"urls\": {\n        \"detail\": \"https://tHjAmhCHPFMGM.lujfSNEMKhv0eGsp7j0SuQLEYluuZj+kHonxn3IATRQC1VcFk4bz\",\n        \"provider\": \"http://rJALsevYY.lkidJL,+wTw6JnMXl1ldjF+k+YKTr6WfaTnAhdvOFXKAtEcFJKY05nQZzbukazGjx0\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd938cbc-2513-46c9-92fe-6a149cdc81b8",
+              "name": "Unauthorized - missing or invalid x-windy-api-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webcams",
+                    "api",
+                    "v3",
+                    "webcams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "continents",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countries",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "regions",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nearby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-windy-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92646c17-1643-41d5-9e9b-1a1febe63bf3",
+          "name": "Get a single webcam by ID.",
+          "request": {
+            "name": "Get a single webcam by ID.",
+            "description": {
+              "content": "Returns details for a single webcam, optionally enriched with include objects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webcams",
+                "api",
+                "v3",
+                "webcams",
+                ":webcamId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lang",
+                  "value": "en",
+                  "description": "Language code for localized strings."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list of detail objects to include: categories, images, location, player, urls."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "webcamId",
+                  "description": "(Required) The numeric identifier of the webcam."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-windy-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2a8a4d36-3323-41e2-b68c-6b52b09e053b",
+              "name": "A single webcam.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webcams",
+                    "api",
+                    "v3",
+                    "webcams",
+                    ":webcamId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "webcamId",
+                      "description": "(Required) The numeric identifier of the webcam."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-windy-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"webcamId\": 7864,\n  \"title\": \"string\",\n  \"status\": \"inactive\",\n  \"viewCount\": 8045,\n  \"lastUpdatedOn\": \"2000-11-19T01:13:26.124Z\",\n  \"categories\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    }\n  ],\n  \"location\": {\n    \"city\": \"string\",\n    \"region\": \"string\",\n    \"country\": \"string\",\n    \"continent\": \"string\",\n    \"latitude\": 6973.132190545931,\n    \"longitude\": 2537.2764557692617\n  },\n  \"images\": {\n    \"current\": {\n      \"icon\": \"http://gIgFgDx.ykcjJtazEjKDe0HdAzA\",\n      \"thumbnail\": \"http://OrpuJVhbklhEFpUhkFaYZPihp.qtsiVuI70A1u8wxgJDIS5UKyUByUFk\",\n      \"preview\": \"http://ymMTlDDkDKiuW.eucBPpmMMNdppkGyeFILd4VvXxMLNFvCkpn0NEZkjA6vMgTYM,GDOp,hIPQ-0QHzFw+ee-PX265h1X,W8mf3u7mOrdKl.jDU\"\n    }\n  },\n  \"player\": {\n    \"day\": \"http://BzkVEoyFRHApHkSYgqWHDUh.wuqRluAcBKg,4HpVtw+GvgQuy+ZvqR6xlTQp6hgnpbe3NM1atosD-Hia.rTjw6KUu2dQp,UCbU\",\n    \"month\": \"https://QTlfRAmLqnIEKtXzmzvZEKvKAuAb.hgkuZGwwgk68h\",\n    \"year\": \"http://pZcgclDHKsECAnZH.wfa9cKBBgLKsLLEm,Q35Dd-BwSlrlAp7t2RYYDga0WeMnei39\"\n  },\n  \"urls\": {\n    \"detail\": \"http://GIFvjKazHDMdbfiV.tzFRABxSVzttxecnE1CenOnHySXk4rCm9cdodrW2P8lUTkarKL\",\n    \"provider\": \"https://AigmIY.vuhtGovJfixyo.Fzmbwd8xjYf1mj.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "251731f4-827d-4f66-b0ee-ded705078258",
+              "name": "Unauthorized - missing or invalid x-windy-api-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webcams",
+                    "api",
+                    "v3",
+                    "webcams",
+                    ":webcamId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "webcamId",
+                      "description": "(Required) The numeric identifier of the webcam."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-windy-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "75d4c0f6-c2d8-4841-a098-6948890432fe",
+              "name": "Webcam not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webcams",
+                    "api",
+                    "v3",
+                    "webcams",
+                    ":webcamId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "webcamId",
+                      "description": "(Required) The numeric identifier of the webcam."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-windy-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.windy.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b9f8a997-a8d4-481b-9f4f-5950fa733f15",
+    "name": "Windy Point Forecast Webcams API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Windy API exposes weather and imagery data from Windy.com across three products: the Point Forecast API (multi-model numerical weather forecast data for a coordinate), the Map Forecast API (an embeddable Leaflet-based weather map library), and the Webcams API (the world's largest webcam repository). This document models the HTTP/REST surfaces - the Point Forecast endpoint and the Webcams v3 endpoints. The Map Forecast product is a client-side JavaScript library and is referenced in the description rather than modeled as REST.\n\nContact Support:\n Name: Windy API Support",
+      "type": "text/plain"
+    }
+  }
+}

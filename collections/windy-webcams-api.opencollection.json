@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Windy Point Forecast Webcams API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webcams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List and filter webcams.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.windy.com/webcams/api/v3/webcams",
+            "params": [
+              {
+                "name": "lang",
+                "value": "",
+                "type": "query",
+                "description": "Language code for localized strings (e.g. en, de, es)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of webcams to return (max 50)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination. Max offset is 1000 (free) or 10000 (professional)."
+              },
+              {
+                "name": "categories",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of category slugs to filter by."
+              },
+              {
+                "name": "continents",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of continent codes to filter by."
+              },
+              {
+                "name": "countries",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of ISO country codes to filter by."
+              },
+              {
+                "name": "regions",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of region codes to filter by."
+              },
+              {
+                "name": "nearby",
+                "value": "",
+                "type": "query",
+                "description": "Filter to webcams near a point, as \"lat,lon,radius\" in km."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of detail objects to include in each webcam: categories, images, location, player, urls."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-windy-api-key",
+              "value": "{{x-windy-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a paginated list of webcams. Results can be filtered by category, country, continent, region, and bounding box, and enriched with optional includes such as images, location, player, and urls."
+        },
+        {
+          "info": {
+            "name": "Get a single webcam by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.windy.com/webcams/api/v3/webcams/:webcamId",
+            "params": [
+              {
+                "name": "webcamId",
+                "value": "",
+                "type": "path",
+                "description": "The numeric identifier of the webcam."
+              },
+              {
+                "name": "lang",
+                "value": "",
+                "type": "query",
+                "description": "Language code for localized strings."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of detail objects to include: categories, images, location, player, urls."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-windy-api-key",
+              "value": "{{x-windy-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns details for a single webcam, optionally enriched with include objects."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

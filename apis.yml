@@ -7,6 +7,19 @@ description: Windy.com is a weather visualization platform serving high-resoluti
   exposes three developer products - a Point Forecast API for multi-model numerical
   weather data at a coordinate, an embeddable Map Forecast API based on Leaflet, and
   a Webcams API for the world's largest webcam repository.
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -76,6 +89,8 @@ apis:
   - type: Documentation
     url: https://api.windy.com/webcams/docs
 common:
+- type: IssueTracker
+  url: https://github.com/windycom/API/issues
 - type: AgenticAccess
   url: agentic-access/windy-agentic-access.yml
 - type: VulnerabilityDisclosure

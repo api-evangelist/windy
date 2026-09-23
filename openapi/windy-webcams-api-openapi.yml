@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Windy Point Forecast Webcams API
-  description: 'The Windy API exposes weather and imagery data from Windy.com across three products: the Point Forecast API (multi-model numerical weather forecast data for a coordinate), the Map Forecast API (an embeddable Leaflet-based weather map library), and the Webcams API (the world''s largest webcam repository). This document models the HTTP/REST surfaces - the Point Forecast endpoint and the Webcams v3 endpoints. The Map Forecast product is a client-side JavaScript library and is referenced in the description rather than modeled as REST.'
+  title: Windy Webcams API
+  description: 'The Windy API exposes weather and imagery data from Windy.com across three products: the Point Forecast API (multi-model numerical weather forecast data for a coordinate), the Map Forecast API (an embeddable Leaflet-based weather map library), and the Webcams API (the world''s largest webcam repository).'
   termsOfService: https://account.windy.com/agreements/windy-api-map-and-point-forecast-terms-of-use
   contact:
     name: Windy API Support
@@ -18,7 +18,7 @@ paths:
       operationId: listWebcams
       tags:
       - Webcams
-      summary: List and filter webcams.
+      summary: List and filter webcams
       description: Returns a paginated list of webcams. Results can be filtered by category, country, continent, region, and bounding box, and enriched with optional includes such as images, location, player, and urls.
       parameters:
       - name: lang
@@ -86,7 +86,7 @@ paths:
       operationId: getWebcam
       tags:
       - Webcams
-      summary: Get a single webcam by ID.
+      summary: Get a single webcam by ID
       description: Returns details for a single webcam, optionally enriched with include objects.
       parameters:
       - name: webcamId
@@ -121,16 +121,6 @@ paths:
       - WindyApiKey: []
 components:
   schemas:
-    WebcamList:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total number of webcams matching the query.
-        webcams:
-          type: array
-          items:
-            $ref: '#/components/schemas/Webcam'
     Webcam:
       type: object
       properties:
@@ -218,6 +208,16 @@ components:
             provider:
               type: string
               format: uri
+    WebcamList:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of webcams matching the query.
+        webcams:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webcam'
   securitySchemes:
     WindyApiKey:
       type: apiKey

@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Windy Point Forecast API
-  description: 'The Windy API exposes weather and imagery data from Windy.com across three products: the Point Forecast API (multi-model numerical weather forecast data for a coordinate), the Map Forecast API (an embeddable Leaflet-based weather map library), and the Webcams API (the world''s largest webcam repository). This document models the HTTP/REST surfaces - the Point Forecast endpoint and the Webcams v3 endpoints. The Map Forecast product is a client-side JavaScript library and is referenced in the description rather than modeled as REST.'
+  description: 'The Windy API exposes weather and imagery data from Windy.com across three products: the Point Forecast API (multi-model numerical weather forecast data for a coordinate), the Map Forecast API (an embeddable Leaflet-based weather map library), and the Webcams API (the world''s largest webcam repository).'
   termsOfService: https://account.windy.com/agreements/windy-api-map-and-point-forecast-terms-of-use
   contact:
     name: Windy API Support
@@ -18,7 +18,7 @@ paths:
       operationId: getPointForecast
       tags:
       - Point Forecast
-      summary: Get a multi-model point forecast for a coordinate.
+      summary: Get a multi-model point forecast for a coordinate
       description: Returns numerical weather, sea, and air-quality forecast data for a single latitude/longitude across the selected forecast model and parameters. The API key is passed in the request body.
       requestBody:
         required: true
@@ -67,8 +67,9 @@ components:
         type: array
         description: Data arrays keyed by "<parameter>-<level>" (e.g. temp-surface, wind_u-surface, wind_v-surface). Indices align with the ts array; null indicates missing model data.
         items:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
     PointForecastRequest:
       type: object
       required:

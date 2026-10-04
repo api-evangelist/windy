@@ -121,16 +121,6 @@ paths:
       - WindyApiKey: []
 components:
   schemas:
-    WebcamList:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total number of webcams matching the query.
-        webcams:
-          type: array
-          items:
-            $ref: '#/components/schemas/Webcam'
     Webcam:
       type: object
       properties:
@@ -218,6 +208,16 @@ components:
             provider:
               type: string
               format: uri
+    WebcamList:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of webcams matching the query.
+        webcams:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webcam'
   securitySchemes:
     WindyApiKey:
       type: apiKey

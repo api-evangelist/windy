@@ -210,3 +210,72 @@ plans:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - metered
+  - subscription
+  units:
+  - compute
+  - object
+  - period
+  - request
+  plans:
+  - name: Point Forecast - Testing
+    access: free
+    model: metered
+    model_how: derived
+    units:
+    - request
+    periods:
+    - day
+  - name: Point Forecast - Professional
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - period
+    - request
+    periods:
+    - day
+    - year
+  - name: Map Forecast - Testing
+    access: free
+    model: metered
+    model_how: derived
+    units:
+    - object
+    periods:
+    - day
+  - name: Map Forecast - Professional
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - object
+    - period
+    periods:
+    - day
+    - year
+  - name: Webcams - Free
+    access: free
+    model: free
+    model_how: derived
+    units:
+    - compute
+    - other
+    periods:
+    - per-use
+  - name: Webcams - Professional
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - compute
+    - other
+    - period
+    periods:
+    - per-use
+    - year

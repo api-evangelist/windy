@@ -43,33 +43,6 @@ paths:
           description: Too Many Requests - daily session limit exceeded.
 components:
   schemas:
-    PointForecastResponse:
-      type: object
-      properties:
-        ts:
-          type: array
-          description: Array of UNIX timestamps in milliseconds, one per forecast step.
-          items:
-            type: integer
-            format: int64
-        units:
-          type: object
-          description: Maps each parameter-level key to its measurement unit.
-          additionalProperties:
-            type: string
-          example:
-            temp-surface: K
-            wind_u-surface: m*s-1
-        warning:
-          type: string
-          description: Optional warning message returned by the API.
-      additionalProperties:
-        type: array
-        description: Data arrays keyed by "<parameter>-<level>" (e.g. temp-surface, wind_u-surface, wind_v-surface). Indices align with the ts array; null indicates missing model data.
-        items:
-          type:
-          - number
-          - 'null'
     PointForecastRequest:
       type: object
       required:
@@ -110,6 +83,33 @@ components:
         key:
           type: string
           description: Point Forecast API key, obtained at https://api.windy.com/keys.
+    PointForecastResponse:
+      type: object
+      properties:
+        ts:
+          type: array
+          description: Array of UNIX timestamps in milliseconds, one per forecast step.
+          items:
+            type: integer
+            format: int64
+        units:
+          type: object
+          description: Maps each parameter-level key to its measurement unit.
+          additionalProperties:
+            type: string
+          example:
+            temp-surface: K
+            wind_u-surface: m*s-1
+        warning:
+          type: string
+          description: Optional warning message returned by the API.
+      additionalProperties:
+        type: array
+        description: Data arrays keyed by "<parameter>-<level>" (e.g. temp-surface, wind_u-surface, wind_v-surface). Indices align with the ts array; null indicates missing model data.
+        items:
+          type:
+          - number
+          - 'null'
   securitySchemes:
     WindyApiKey:
       type: apiKey
